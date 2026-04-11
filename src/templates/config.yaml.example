@@ -1,0 +1,41 @@
+voices_dir: ../../voices
+sounds_dir: ../../sounds
+
+piper_bin: piper
+ffmpeg_bin: ffmpeg
+
+default_format: mp3
+mp3_bitrate: 128k
+normalize: false
+
+max_text_chars: 500
+max_concurrency: 2
+cache_size: 64
+cache_ttl_s: 300
+
+cors_allow_origins: "*"
+
+presets:
+  fast:
+    length_scale: 0.85
+  slow:
+    length_scale: 1.2
+
+moderation:
+  enabled: true
+  strip_urls: true
+  strip_emojis: true
+  censor_slurs: true
+  blocklist_path: ./mod_blocklist.txt
+
+auth:
+  enabled: true
+  file: ./secrets.yaml
+
+session:
+  file: ./secrets.yaml
+  cookie_name: sid
+  # lax | strict | none
+  same_site: lax
+  # true when serving over HTTPS
+  secure: false
