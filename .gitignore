@@ -4,6 +4,8 @@ src/tts-venv/
 src/private/
 src/public/
 src/*.log
+src/data/
 tts-error.log
 voices/*.onnx
 voices/*.onnx.json
+voices/piper/
