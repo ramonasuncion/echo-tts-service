@@ -1,25 +1,39 @@
+# paths resolve relative to this file. piper voices live in <voices_dir>/piper/, kokoro downloads on demand
 voices_dir: ../../voices
 sounds_dir: ../../sounds
 
-piper_bin: piper
-ffmpeg_bin: ffmpeg
+# piper | kokoro
+backend: piper
 
+# mp3 | wav
 default_format: mp3
-mp3_bitrate: 128k
+
+# loudnorm pass on rendered audio (loudnorm=I=-16:TP=-1.5:LRA=11)
 normalize: false
 
 max_text_chars: 500
 max_concurrency: 2
-cache_size: 64
-cache_ttl_s: 300
+max_sfx_per_request: 10
 
+# "*" or comma-separated list of origins
 cors_allow_origins: "*"
 
+db_file: ./data/tts.db
+
+# short prefixes mapped to voice ids, e.g. "ryan: hello" -> en_US-ryan-high
+aliases: {}
+
+# selected via the "preset" field or inline tags like "[fast] hello"
 presets:
   fast:
     length_scale: 0.85
   slow:
     length_scale: 1.2
+
+# post-synth DSP chain (pedalboard). stages: pitch_shift, bitcrush, chorus, reverb, gain, highpass, lowpass, distortion, delay, compressor
+voice_fx:
+  enabled: false
+  chain: []
 
 moderation:
   enabled: true
@@ -34,7 +48,6 @@ auth:
 
 session:
   file: ./secrets.yaml
-  cookie_name: sid
   # lax | strict | none
   same_site: lax
   # true when serving over HTTPS
